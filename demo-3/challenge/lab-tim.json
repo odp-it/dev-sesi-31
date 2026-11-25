@@ -1,0 +1,10 @@
+{
+  "resource": "/api/lab/ISI_RESOURCE",
+  "existingId": 0,
+  "filterParam": "ISI_NAMA_PARAMETER",
+  "filterValue": "ISI_NILAI_YANG_COCOK_SEBAGIAN_DATA",
+  "createBody": {
+    "ISI_FIELD_UNIK": "ISI-{{unik}}"
+  },
+  "invalidBody": {}
+}

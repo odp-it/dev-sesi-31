@@ -1,9 +1,12 @@
-# Demo 3 · Transfer Commit/Rollback (ikuti ±30 menit)
+# Demo 3 · Transfer Commit/Rollback
 
-> Folder ini project lengkap. Hasil Demo 1 sampai Demo 2 **sudah terisi** (catch-up). Kalau pekerjaanmu sendiri sudah jalan, boleh pakai punyamu.
-> Buka folder ini langsung di VS Code, lalu lakukan persiapan di [README utama](../README.md) (mis. salin `.env`, install, atau `git init`) **di folder ini**. Semua path relatif terhadap folder ini.
+[Persiapan](../README.md) · [Troubleshooting](../TROUBLESHOOTING.md)
 
-## 3.1 Helper transaksi (±5 menit)
+> Hasil Demo 1 sampai Demo 2 sudah terisi di folder ini. Buka folder ini langsung di VS Code dan lakukan persiapan project di sini (`.env`, install, atau `git init`).
+
+Buat transfer antar rekening dalam satu transaksi dengan commit dan rollback.
+
+## 3.1 Helper transaksi
 
 Di `src/db/oracle.js`:
 
@@ -25,7 +28,7 @@ export async function withTransaction(work) {
 
 Semua statement transfer harus memakai `conn` yang sama. `query()` meminjam koneksi lain dari pool, jadi tidak ikut transaksi.
 
-## 3.2 Repository transfer (±15 menit)
+## 3.2 Repository transfer
 
 Di `src/repositories/transfer.repository.js`, isi `transfer()`:
 
@@ -85,7 +88,7 @@ export async function transfer({ fromAccountId, toAccountId, amount, description
 
 `amount` dikirim sebagai string (`"250000.00"`) dan dihitung oleh Oracle, jadi tidak pernah lewat float JavaScript.
 
-## 3.3 Test transfer (±5 menit)
+## 3.3 Test transfer
 
 ```bash
 curl -X POST http://localhost:3000/api/transfers -H "Content-Type: application/json" -d "@requests/transfer-ok.json"
@@ -99,7 +102,7 @@ Yang harus terlihat (`txnAt` berbeda):
 
 Lalu tiga request gagal: `transfer-saldo-kurang.json` (409 `INSUFFICIENT_BALANCE`), `transfer-rekening-diblokir.json` (409 `ACCOUNT_BLOCKED`), `transfer-rekening-tidak-ada.json` (404 `NOT_FOUND`).
 
-## 3.4 Buktikan rollback (±5 menit)
+## 3.4 Buktikan rollback
 
 1. `npm run db:reset`, lalu cek saldo: `curl http://localhost:3000/api/accounts/1` → `"balance":"14550000.00"`.
 2. Di `transfer.repository.js`, tambahkan sementara baris ini tepat di atas komentar `// 3. Kredit.`:

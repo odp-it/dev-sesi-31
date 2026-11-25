@@ -1,7 +1,8 @@
-# Lab · Endpoint ALP Tim dengan Test (±35 menit, lanjut setelah kelas)
+# Lab · Endpoint ALP Tim dengan Test
 
-> Folder ini project lengkap. Hasil Demo 1 sampai Demo 3 **sudah terisi** (catch-up). Kalau pekerjaanmu sendiri sudah jalan, boleh pakai punyamu.
-> Buka folder ini langsung di VS Code, lalu lakukan persiapan di [README utama](../README.md) (mis. salin `.env`, install, atau `git init`) **di folder ini**. Semua path relatif terhadap folder ini.
+[Persiapan](../README.md) · [Troubleshooting](../TROUBLESHOOTING.md)
+
+> Hasil Demo 1 sampai Demo 3 sudah terisi di folder ini. Buka folder ini langsung di VS Code dan lakukan persiapan project di sini (`.env`, install, atau `git init`).
 
 **Skenario.** Tim frontend aplikasi ALP tim akan mulai membuat halaman daftar dan form untuk satu data utama (mis. produk, anggota, atau tagihan). Tim lead meminta API untuk data itu dengan kontrak yang sama dengan API Tabungan UMKM: daftar berhalaman dengan satu filter, detail, tambah, dan hapus, error dalam satu bentuk, plus test yang bisa dijalankan siapa pun di tim.
 
@@ -47,12 +48,12 @@ node challenge/cek-lab.mjs
 | Data ganda | 10 | `cek-lab.mjs` | `409 DUPLICATE` tanpa teks `ORA-` |
 | Filter aman | 10 | `cek-lab.mjs` | Filter menyaring data; `' OR '1'='1` menghasilkan 0 data atau `400` |
 | Hapus | 10 | `cek-lab.mjs` | `204`, lalu `GET` dan `DELETE` ulang `404` |
-| Test Bruno tim | 10 | Instruktur atau tim lain | `05 lab`: minimal 6 request ber-assert (200, 201, 400, 404, 409), lulus dua kali berturut-turut |
-| Lapisan dan bind | 5 | Instruktur atau tim lain | SQL hanya di `lab.repository.js`, semua nilai pemakai lewat bind, tulis data dengan `autoCommit` atau `withTransaction` |
-| Cocok data tim | 5 | Instruktur atau tim lain | Nama field camelCase sesuai kamus data tim, uang string dua desimal, respons error tanpa stack trace |
+| Test Bruno tim | 10 | Review tim lain | `05 lab`: minimal 6 request ber-assert (200, 201, 400, 404, 409), lulus dua kali berturut-turut |
+| Lapisan dan bind | 5 | Review tim lain | SQL hanya di `lab.repository.js`, semua nilai pemakai lewat bind, tulis data dengan `autoCommit` atau `withTransaction` |
+| Cocok data tim | 5 | Review tim lain | Nama field camelCase sesuai kamus data tim, uang string dua desimal, respons error tanpa stack trace |
 | **Total** | **100** | | |
 
-Skor kurang dari 60 setelah waktu kelas habis: lanjutkan setelah kelas sampai memenuhi rubrik. Tugas lanjutan tidak dikumpulkan; cek sendiri dengan `cek-lab.mjs` dan daftar rubrik di atas.
+Target minimal 60 poin. Cek sendiri dengan `cek-lab.mjs` dan daftar rubrik di atas.
 
 ## Bonus Lab (opsional, maks. +10)
 

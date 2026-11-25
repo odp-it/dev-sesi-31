@@ -1,7 +1,10 @@
-# Demo 2 · Mutasi Rekening (ikuti ±15 menit)
+# Demo 2 · Mutasi Rekening
 
-> Folder ini project lengkap. Hasil Demo 1 **sudah terisi** (catch-up). Kalau pekerjaanmu sendiri sudah jalan, boleh pakai punyamu.
-> Buka folder ini langsung di VS Code, lalu lakukan persiapan di [README utama](../README.md) (mis. salin `.env`, install, atau `git init`) **di folder ini**. Semua path relatif terhadap folder ini.
+[Persiapan](../README.md) · [Troubleshooting](../TROUBLESHOOTING.md)
+
+> Hasil Demo 1 sudah terisi di folder ini. Buka folder ini langsung di VS Code dan lakukan persiapan project di sini (`.env`, install, atau `git init`).
+
+Buat endpoint mutasi rekening dengan filter dan pagination.
 
 ## 2.1 Filter tanggal, kategori, dan pagination
 

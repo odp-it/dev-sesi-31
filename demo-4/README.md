@@ -1,9 +1,12 @@
-# Demo 4 · Test Lengkap Bruno (ikuti ±12 menit)
+# Demo 4 · Test Lengkap Bruno
 
-> Folder ini project lengkap. Hasil Demo 1 sampai Demo 3 **sudah terisi** (catch-up). Kalau pekerjaanmu sendiri sudah jalan, boleh pakai punyamu.
-> Buka folder ini langsung di VS Code, lalu lakukan persiapan di [README utama](../README.md) (mis. salin `.env`, install, atau `git init`) **di folder ini**. Semua path relatif terhadap folder ini.
+[Persiapan](../README.md) · [Troubleshooting](../TROUBLESHOOTING.md)
 
-## 4.1 Seluruh koleksi Bruno (±5 menit)
+> Hasil Demo 1 sampai Demo 3 sudah terisi di folder ini. Buka folder ini langsung di VS Code dan lakukan persiapan project di sini (`.env`, install, atau `git init`).
+
+Jalankan test lengkap dengan Bruno dan baca hasilnya.
+
+## 4.1 Seluruh koleksi Bruno
 
 ```bash
 npm run db:reset
@@ -11,7 +14,7 @@ npm run db:reset
 
 Run Collection di Bruno. Yang harus terlihat: **26 request lulus, 68/68 assertion**. Jalankan sekali lagi tanpa reset: tetap 26 lulus (koleksi membuat lalu menghapus datanya sendiri).
 
-## 4.2 Tiga skenario dengan curl (±4 menit)
+## 4.2 Tiga skenario dengan curl
 
 ```bash
 curl -i http://localhost:3000/api/customers/1
@@ -27,7 +30,7 @@ curl -i -X POST http://localhost:3000/api/customers -H "Content-Type: applicatio
 
 `-d "@requests/..."` membaca body dari file, jadi perintah yang sama jalan di bash dan PowerShell (`curl.exe`) tanpa urusan tanda kutip JSON. Tanda kutip di sekitar `@requests/...` wajib di PowerShell: argumen berawalan `@` tanpa kutip bisa dibaca sebagai splatting (`Unrecognized token in source text`). Di PowerShell ketik `curl.exe -i ...`; `curl -i` di Windows PowerShell 5.1 memberi `Missing an argument for parameter 'InFile'`.
 
-## 4.3 Baca satu test, lalu buat gagal (±3 menit)
+## 4.3 Baca satu test, lalu buat gagal
 
 Buka `bruno/03 transfers/02 Transfer insufficient balance.bru` di VS Code. Satu file `.bru` berisi nama request (`meta`), method dan URL (`post`), body (`body:json`), dan aturan lulus (`assert`):
 

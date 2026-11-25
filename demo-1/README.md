@@ -1,11 +1,12 @@
-# Demo 1 · Setup, Baseline Test, dan Nasabah (ikuti ±43 menit)
+# Demo 1 · Setup, Baseline Test, dan Nasabah
 
-> Folder ini project lengkap. Isinya starter: belum ada Demo yang diisi.
-> Buka folder ini langsung di VS Code, lalu lakukan persiapan di [README utama](../README.md) (mis. salin `.env`, install, atau `git init`) **di folder ini**. Semua path relatif terhadap folder ini.
+[Persiapan](../README.md) · [Troubleshooting](../TROUBLESHOOTING.md)
 
-Tahap pertama (1.1–1.4, ±10 menit): setup dan baseline test. Tahap kedua (1.5–1.8, ±33 menit, setelah instruktur memperagakan nasabah dan error): nasabah.
+> Buka folder ini langsung di VS Code dan lakukan persiapan project di sini (`.env`, install, atau `git init`).
 
-## 1.1 Install (±2 menit)
+Kerjakan 1.1–1.8: setup, baseline test, lalu endpoint nasabah.
+
+## 1.1 Install
 
 Buka folder `demo-1` di VS Code dan terminal terintegrasi. Kalau muncul dialog `Do you trust the authors of the files in this folder?`, pilih **Trust Folder & Continue**. Peringatan `npm warn install-scripts ... oracledb` boleh diabaikan (di Windows PowerShell 5.1 tampil merah karena stderr).
 
@@ -13,7 +14,7 @@ Buka folder `demo-1` di VS Code dan terminal terintegrasi. Kalau muncul dialog `
 npm ci
 ```
 
-## 1.2 `.env` dan data (±3 menit)
+## 1.2 `.env` dan data
 
 Salin `.env.example` menjadi `.env` (`cp` atau `Copy-Item` di PowerShell), isi password `ALP_DEV`, lalu:
 
@@ -29,11 +30,11 @@ API Tabungan UMKM jalan di http://localhost:3000
 Swagger UI: http://localhost:3000/docs
 ```
 
-## 1.3 Buka kontrak di Swagger UI (±2 menit)
+## 1.3 Buka kontrak di Swagger UI
 
 Buka `http://localhost:3000/docs` di browser. Ada 5 grup: Branches, Customers, Accounts, Transfers, Reports. Klik **GET /customers → Try it out → Execute**: respons `501` dengan pesan `TODO 1.5 belum dikerjakan`.
 
-## 1.4 Jalankan koleksi Bruno (±3 menit)
+## 1.4 Jalankan koleksi Bruno
 
 1. Di Bruno: **Open Collection** → pilih folder `bruno/` di lab ini.
 2. Di kanan atas, pilih environment **local**.
@@ -48,11 +49,11 @@ cd bruno
 npx --yes @usebruno/cli@4.3.0 run --env local
 ```
 
-**Nasabah: pagination, CRUD, error 409 (1.5–1.8, ±33 menit)**
+**Nasabah: pagination, CRUD, error 409 (1.5–1.8)**
 
 Semua di `src/repositories/customer.repository.js`, kecuali 1.8.
 
-## 1.5 Daftar nasabah dengan pagination (±11 menit)
+## 1.5 Daftar nasabah dengan pagination
 
 ```js
 export async function findMany({ page, pageSize, q, segment }) {
@@ -78,7 +79,7 @@ curl "http://localhost:3000/api/customers?q=contoh&segment=UMKM&page=2&pageSize=
 
 Yang harus terlihat: 2 nasabah (`Dewi Contoh`, `Maya Contoh`), hanya field ringkas (`id`, `cifNo`, `fullName`, `segment`, `branchCode`), `"page":2,"pageSize":2,"total":6`.
 
-## 1.6 Buat nasabah (±8 menit)
+## 1.6 Buat nasabah
 
 ```js
 export async function create(data) {
@@ -109,7 +110,7 @@ export async function create(data) {
 
 Nomor CIF tidak dikirim pemakai (kontrak sesi 29): server membuatnya dari ID baru, mis. `CIF-SIM-0013`. ID dari identity column bisa melompat (mis. langsung 21) karena Oracle menyimpan cadangan 20 nomor di memori; itu normal, nomor tidak harus berurutan. Insert dan update CIF ada di satu blok PL/SQL, jadi satu kali kirim ke database. `autoCommit` bawaan node-oracledb adalah `false`; tanpa `{ autoCommit: true }`, data baru hilang saat koneksi kembali ke pool.
 
-## 1.7 Ganti dan hapus nasabah (±4 menit)
+## 1.7 Ganti dan hapus nasabah
 
 ```js
 export async function update(id, data) {
@@ -131,7 +132,7 @@ export async function remove(id) {
 
 Service memakai `rowsAffected` `0` untuk menjawab `404 NOT_FOUND`.
 
-## 1.8 Error Oracle jadi 409 (±10 menit)
+## 1.8 Error Oracle jadi 409
 
 Kirim nasabah yang sama dua kali sebelum 1.8 dikerjakan:
 
